@@ -1,0 +1,21 @@
+import paho.mqtt.client as mqtt
+import json
+import time
+
+BROKER = "dg.pariautomation.in"
+PORT = 1883
+TOPIC = "greenway/rpi3/sub"
+
+client = mqtt.Client(client_id="RPI3_PUB_001", clean_session=True)
+client.connect(BROKER, PORT, 60)
+
+while True:
+    data = {
+        "device": "RaspberryPi3",
+        "status": "online",
+        "temp": 29.6
+    }
+
+    client.publish(TOPIC, json.dumps(data), qos=1)
+    print("Published:", data)
+    time.sleep(5)
