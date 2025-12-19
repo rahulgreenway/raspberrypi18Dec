@@ -1,1 +1,36 @@
-sscasca
+sudo nano /etc/systemd/system/mygps.service
+
+
+[Unit]
+Description=My GPS Python Service
+After=network.target
+
+[Service]
+User=greenway
+WorkingDirectory=/home/greenway/mygps
+ExecStart=/home/greenway/mygps/gpsenv/bin/python /home/greenway/mygps/main.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
+
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable mygps.service
+sudo systemctl start mygps.service
+
+Service status: systemctl status mygps.service
+
+
+Live logs: journalctl -u mygps.service -f
+
+Reboot Test :sudo reboot
+
+Reboot ke baad: systemctl status mygps.servicels
