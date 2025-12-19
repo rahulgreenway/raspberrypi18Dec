@@ -1,0 +1,25 @@
+sudo nano /etc/systemd/system/powermqtt.service
+
+[Unit]
+Description=Power MQTT Auto Run (Auto Git Pull)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=greenway
+WorkingDirectory=/home/greenway/raspberrypi18Dec/18Dec
+
+# 🔥 AUTO UPDATE
+ExecStartPre=/usr/bin/git pull
+
+ExecStart=/home/greenway/mygps/bin/python /home/greenway/raspberrypi18Dec/18Dec/powermqtt.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reload
+sudo systemctl restart powermqtt.service
