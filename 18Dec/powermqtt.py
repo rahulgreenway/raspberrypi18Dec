@@ -14,7 +14,7 @@ ADDR = 0x01
 MQTT_BROKER = "broker.hivemq.com"   # or your server IP
 MQTT_PORT = 1883
 MQTT_TOPIC = "greenway/rpi/pzem/data"
-CLIENT_ID = "RPI_PZEM_001"
+CLIENT_ID = "GreenwayInduction1"
 # ================================================
 
 # ================= CRC ===========================
