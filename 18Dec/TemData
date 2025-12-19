@@ -1,14 +1,15 @@
-sudo nano /etc/systemd/system/mygps.service
+sudo nano /etc/systemd/system/powermqtt.service
 
 
 [Unit]
-Description=My GPS Python Service
-After=network.target
+Description=Power MQTT Auto Run (VENV mygps)
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 User=greenway
-WorkingDirectory=/home/greenway/mygps
-ExecStart=/home/greenway/mygps/gpsenv/bin/python /home/greenway/mygps/main.py
+WorkingDirectory=/home/greenway/raspberrypi18Dec/18Dec
+ExecStart=/home/greenway/mygps/bin/python /home/greenway/raspberrypi18Dec/18Dec/powermqtt.py
 Restart=always
 RestartSec=5
 Environment=PYTHONUNBUFFERED=1
@@ -17,9 +18,21 @@ Environment=PYTHONUNBUFFERED=1
 WantedBy=multi-user.target
 
 
+sudo systemctl daemon-reload
+sudo systemctl enable powermqtt.service
+sudo systemctl start powermqtt.service
 
+systemctl status powermqtt.service
 
+journalctl -u powermqtt.service -f
 
+sudo reboot
+
+systemctl status powermqtt.service
+
+sudo usermod -a -G dialout greenway
+
+sudo reboot
 
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
