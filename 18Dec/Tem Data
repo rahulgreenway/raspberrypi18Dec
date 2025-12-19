@@ -1,0 +1,14 @@
+[Unit]
+Description=My GPS Python Service
+After=network.target
+
+[Service]
+User=greenway
+WorkingDirectory=/home/greenway/mygps
+ExecStart=/home/greenway/mygps/gpsenv/bin/python /home/greenway/mygps/main.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
