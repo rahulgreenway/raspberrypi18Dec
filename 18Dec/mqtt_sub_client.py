@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-BROKER = "dg.pariautomation.in"   # ya aapka server IP / domain
+BROKER = "broker.hivemq.com"   # ya aapka server IP / domain
 PORT = 1883
 TOPIC = "greenway/rpi3/sub"
 

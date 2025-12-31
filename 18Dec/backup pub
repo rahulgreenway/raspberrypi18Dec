@@ -4,24 +4,18 @@ import time
 
 BROKER = "broker.hivemq.com"
 PORT = 1883
+TOPIC = "greenway/rpi3/sub"
 
-TOPIC = "greenway/rpi/pzem/data"
 client = mqtt.Client(client_id="RPI3_PUB_001", clean_session=True)
 client.connect(BROKER, PORT, 60)
 
 while True:
     data = {
-        "deviceId": "PZEM-001",
-        "voltage": 230.5,
-        "current": 2.5,
-        "power": 575.25,
-        "energy": 1250.75,
-        "frequency": 50.0,
-        "powerFactor": 0.98,
-        "latitude":22.432829,
-        "longitude":73.220697
+        "device": "RaspberryPi3",
+        "status": "online",
+        "temp": 29.6
     }
-
+    
     client.publish(TOPIC, json.dumps(data), qos=1)
     print("Published:", data)
     time.sleep(5)

@@ -77,15 +77,13 @@ def read_pzem(ser):
         "deviceId": CLIENT_ID,
         "voltage": round(voltage, 2),
         "current": round(current, 3),
-        "power": round(power, 2),
-        "energy": round(energy, 3),
+        "active_power": round(power, 2),
+        "energy_kwh": round(energy, 3),
         "frequency": round(frequency, 2),
-        "powerFactor": round(pf, 2),
+        "power_factor": round(pf, 2),
         "apparent_power": round(apparent_power, 2),
         "reactive_power": round(reactive_power, 2),
-        "timestamp": int(time.time()),
-        "latitude":22.432829,
-        "longitude":73.220697
+        "timestamp": int(time.time())
     }
 
 # ================= MQTT ==========================
